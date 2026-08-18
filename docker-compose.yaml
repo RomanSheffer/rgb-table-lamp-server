@@ -1,0 +1,30 @@
+services:
+
+  java-app:
+    build: .
+    container_name: grb-table-lamp
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - DEF_PASS=${DEF_PASS}
+    depends_on:
+      - postgres-db
+
+
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: rgb-table-lamp-postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=lamp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
