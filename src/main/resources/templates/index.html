@@ -1,164 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
   <title>RGB Ночник</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="Google Web Designer 16.4.1.0219">
+
   <style id="gwd-text-style">
-    p { margin: 0px; }
-    h1 { margin: 0px; }
-    h2 { margin: 0px; }
-    h3 { margin: 0px; }
+    p, h1, h2, h3 { margin: 0px; }
   </style>
+
   <style>
     html, body {
       width: 100%;
       height: 100%;
       margin: 0px;
-    }
-    body {
-      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-      transform-style: preserve-3d;
-      background-image: -webkit-radial-gradient(center center, circle cover, rgb(84, 86, 130) 5%, rgb(48, 114, 132) 100%);
-    }
-    body * {
-      transform-style: preserve-3d;
-    }
-    .gwd-input-1qha {
-      position: absolute;
-      width: 100px;
-      height: 24px;
-      left: 533px;
-      top: 243px;
-    }
-    .gwd-input-1jqt {
-      position: absolute;
-      width: 100px;
-      height: 24px;
-      left: 533px;
-      top: 302px;
-    }
-    .gwd-input-p425 {
-      position: absolute;
-      width: 100px;
-      height: 24px;
-      left: 533px;
-      top: 355px;
-    }
-    .gwd-button-1vot {
-      position: absolute;
-      width: 100px;
-      height: 84px;
-      font-family: "Courier New";
-      font-size: 23px;
-      left: 672px;
-      top: 381px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .gwd-p-1vg4 {
-      position: absolute;
-      font-family: "Courier New";
-      color: rgb(56, 183, 183);
-      left: 239px;
-      top: 163px;
-    }
-    .gwd-button-1cnm {
-      position: absolute;
-      width: 199px;
-      height: 45px;
-      font-family: "Courier New";
-      font-size: 19px;
-      left: 436px;
-      top: 410px;
-      cursor: pointer;
-    }
-    .gwd-span-1am4 {
-      position: absolute;
-      width: 124px;
-      height: 24px;
-      color: rgb(208, 54, 28);
-      left: 450px;
-      top: 237px;
-    }
-    .gwd-span-12jq {
-      position: absolute;
-      font-size: 32px;
-      font-weight: bold;
-      color: rgb(77, 194, 89);
-      left: 412px;
-      top: 291px;
-    }
-    .gwd-span-7ex8 {
-      position: absolute;
-      font-size: 32px;
-      font-weight: bold;
-      color: rgb(78, 105, 229);
-      left: 436px;
-      top: 344px;
+      padding: 0px;
     }
 
+    body {
+      background-image: -webkit-radial-gradient(center center, circle cover, rgb(84, 86, 130) 5%, rgb(48, 114, 132) 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 20px;
+      transition: background-color 0.4s ease, background-image 0.4s ease;
+    }
+
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .gwd-p-1vg4 {
+      font-family: "Courier New", monospace;
+      color: rgb(56, 183, 183);
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .color-label {
+      font-family: "Courier New", monospace;
+      width: 80px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .red-label { color: rgb(208, 54, 28); }
+    .green-label { color: rgb(77, 194, 89); }
+    .blue-label { color: rgb(78, 105, 229); }
+
+    .slider-input {
+      flex: 1;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .buttons-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .gwd-button-1vot {
+      width: 100%;
+      max-width: 200px;
+      height: 60px;
+      font-family: "Courier New", monospace;
+      font-size: 23px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      transition: background-color 0.4s, transform 0.1s, box-shadow 0.4s, opacity 0.4s;
+    }
+
+    .gwd-button-1vot:disabled {
+      background-color: #555555 !important;
+      color: #aaaaaa !important;
+      border: 2px solid #333333 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .gwd-button-1cnm {
+      width: 100%;
+      max-width: 250px;
+      height: 45px;
+      font-family: "Courier New", monospace;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+
+    #lamp_status_label {
+      font-family: "Courier New", monospace;
+      font-size: 16px;
+      color: #ffffff;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
-<body class="htmlNoPages">
-<input type="range" id="range_red" value="50" min="0" max="100" step="1" class="gwd-input-1qha">
-<input type="range" id="range_green" value="50" min="0" max="100" step="1" class="gwd-input-1jqt">
-<input type="range" id="range_blue" value="50" min="0" max="100" step="1" class="gwd-input-p425">
-<button id="button_active" class="gwd-button-1vot">вкл/выкл</button>
-<h1 class="gwd-p-1vg4">HTML страничка для RGB ночника</h1>
-<button id="button_avaiable" class="gwd-button-1cnm">Проверить состояние</button>
-<h1 class="gwd-span-1am4">RED</h1><span class="gwd-span-12jq">GREEN</span><span class="gwd-span-7ex8">BLUE</span>
+<body>
+
+<div class="app-container">
+
+  <h1 class="gwd-p-1vg4">HTML страничка для RGB ночника</h1>
+
+  <div class="control-row">
+    <span class="color-label red-label">RED</span>
+    <input type="range" id="range_red" value="50" min="0" max="100" step="1" class="slider-input">
+  </div>
+
+  <div class="control-row">
+    <span class="color-label green-label">GREEN</span>
+    <input type="range" id="range_green" value="50" min="0" max="100" step="1" class="slider-input">
+  </div>
+
+  <div class="control-row">
+    <span class="color-label blue-label">BLUE</span>
+    <input type="range" id="range_blue" value="50" min="0" max="100" step="1" class="slider-input">
+  </div>
+
+  <div class="buttons-block">
+    <button id="button_active" class="gwd-button-1vot" disabled>Ожидание...</button>
+    <button id="button_avaiable" class="gwd-button-1cnm">Проверить состояние</button>
+  </div>
+
+</div>
 
 <script>
-
   const redSlider = document.getElementById('range_red');
   const greenSlider = document.getElementById('range_green');
   const blueSlider = document.getElementById('range_blue');
   const button = document.getElementById('button_active');
   const btnCheck = document.getElementById('button_avaiable');
+  const buttonsBlock = document.querySelector('.buttons-block');
 
   let isLampActive = false;
+  let isWorking = false;
+  let hasConnection = false;
+  let debounceTimeout = null;
 
-  button.style.backgroundColor = '#ff4d4d';
-  button.style.color = '#ffffff';
-  button.style.border = '2px solid #cc0000';
   button.style.transition = 'background-color 0.4s, transform 0.1s, box-shadow 0.4s';
 
   const statusText = document.createElement('div');
   statusText.id = 'lamp_status_label';
   statusText.innerText = 'Статус: неизвестно';
-  statusText.style.position = 'absolute';
-  statusText.style.fontFamily = '"Courier New"';
-  statusText.style.fontSize = '16px';
-  statusText.style.color = '#ffffff';
-  statusText.style.left = '436px';
-  statusText.style.top = '465px';
-  statusText.style.width = '199px';
-  statusText.style.textAlign = 'center';
-  document.body.appendChild(statusText);
+  buttonsBlock.appendChild(statusText);
 
-  function updateButtonUI() {
-    if (isLampActive) {
-      button.style.backgroundColor = '#4dff4d';
-      button.style.color = '#000000';
-      button.style.border = '2px solid #00cc00';
-      button.style.boxShadow = '0 0 15px rgba(77, 255, 77, 0.6)';
+  function updateBackgroundColor() {
+    const rBytes = Math.round(redSlider.value * 2.55);
+    const gBytes = Math.round(greenSlider.value * 2.55);
+    const bBytes = Math.round(blueSlider.value * 2.55);
+
+    if (isLampActive && hasConnection) {
+      document.body.style.backgroundImage = 'none';
+      document.body.style.backgroundColor = `rgb(${rBytes}, ${gBytes}, ${bBytes})`;
     } else {
-      button.style.backgroundColor = '#ff4d4d';
-      button.style.color = '#ffffff';
-      button.style.border = '2px solid #cc0000';
-      button.style.boxShadow = 'none';
+      document.body.style.backgroundImage = '-webkit-radial-gradient(center center, circle cover, rgb(84, 86, 130) 5%, rgb(48, 114, 132) 100%)';
     }
   }
 
+  function updateButtonUI() {
+    if (hasConnection) {
+      button.disabled = false;
+      if (isWorking) {
+        button.innerText = 'вкл/выкл';
+        button.style.backgroundColor = '#4dff4d';
+        button.style.color = '#000000';
+        button.style.border = '2px solid #00cc00';
+        button.style.boxShadow = '0 0 15px rgba(77, 255, 77, 0.6)';
+        statusText.innerText = 'Статус: Лампа включена';
+      } else {
+        button.innerText = 'вкл/выкл';
+        button.style.backgroundColor = '#ff4d4d';
+        button.style.color = '#ffffff';
+        button.style.border = '2px solid #cc0000';
+        button.style.boxShadow = 'none';
+        statusText.innerText = 'Статус: Лампа выключена';
+      }
+    } else {
+      button.disabled = true;
+      button.innerText = 'Нет связи';
+      statusText.innerText = 'Статус: Ошибка подключения';
+    }
+    updateBackgroundColor();
+  }
+
   function sendDataToBackend() {
+    if (!hasConnection) return;
+
     const payload = {
       r: parseInt(redSlider.value),
       g: parseInt(greenSlider.value),
       b: parseInt(blueSlider.value),
-      isActive: isLampActive
+      isActive: isLampActive,
+      isWorking: isWorking
     };
 
     fetch('/api/lamp', {
@@ -169,55 +232,84 @@
       body: JSON.stringify(payload)
     })
             .then(response => {
-              if (!response.ok) {
-                console.error('Ошибка отправки данных на сервер');
-              }
+              if (!response.ok) console.error('Ошибка отправки пакета данных');
             })
-            .catch(error => console.error('Ошибка сети:', error));
+            .catch(error => {
+              console.error('Критическая ошибка сети:', error);
+              hasConnection = false;
+              updateButtonUI();
+            });
   }
 
-  redSlider.addEventListener('input', sendDataToBackend);
-  greenSlider.addEventListener('input', sendDataToBackend);
-  blueSlider.addEventListener('input', sendDataToBackend);
+  function onSliderChangeDebounced() {
+    updateBackgroundColor();
+
+    clearTimeout(debounceTimeout);
+
+    debounceTimeout = setTimeout(() => {
+      sendDataToBackend();
+    }, 100);
+  }
+
+  redSlider.addEventListener('input', onSliderChangeDebounced);
+  greenSlider.addEventListener('input', onSliderChangeDebounced);
+  blueSlider.addEventListener('input', onSliderChangeDebounced);
 
   button.addEventListener('click', () => {
-    isLampActive = !isLampActive;
+    if (!hasConnection) return;
 
+    isWorking = !isWorking;
     button.style.transform = 'scale(0.95)';
     setTimeout(() => button.style.transform = 'scale(1)', 100);
-
     updateButtonUI();
     sendDataToBackend();
   });
 
-  btnCheck.addEventListener('click', () => {
-    statusText.innerText = 'Проверка...';
-    statusText.style.color = '#ffcc00';
+  function checkLampStatus(isAuto = false) {
+    if (!isAuto) {
+      btnCheck.innerText = 'Запрос...';
+      btnCheck.style.backgroundColor = '#ffcc00';
+      btnCheck.style.color = '#000000';
+    }
 
     fetch('/api/lamp/status')
             .then(res => {
-              if (!res.ok) throw new Error();
+              if (!res.ok) throw new Error('Сервер вернул ошибку');
               return res.json();
             })
             .then(state => {
+              hasConnection = true;
+              isLampActive = state.isActive;
+              isWorking = state.isWorking;
 
-              const active = state.alive || state.isActive || false;
+              if(state.r !== undefined) redSlider.value = state.r;
+              if(state.g !== undefined) greenSlider.value = state.g;
+              if(state.b !== undefined) blueSlider.value = state.b;
 
-              if (active) {
-                statusText.innerText = 'Активно';
-                statusText.style.color = '#4dff4d';
-              } else {
-                statusText.innerText = 'Не активно';
-                statusText.style.color = '#ff4d4d';
+              if (!isAuto) {
+                btnCheck.innerText = 'Проверить состояние';
+                btnCheck.style.backgroundColor = '#fff';
+                btnCheck.style.color = '#000';
               }
+              updateButtonUI();
             })
-            .catch(err => {
-              statusText.innerText = 'Не активно';
-              statusText.style.color = '#ff4d4d';
-              console.error('Сервер лампы не отвечает');
+            .catch(error => {
+              console.error('Ошибка опроса:', error);
+              hasConnection = false;
+              if (!isAuto) {
+                btnCheck.innerText = 'Ошибка!';
+                btnCheck.style.backgroundColor = '#ff4d4d';
+                btnCheck.style.color = '#fff';
+              }
+              updateButtonUI();
             });
-  });
-</script>
-</body>
+  }
 
+  btnCheck.addEventListener('click', () => checkLampStatus(false));
+  checkLampStatus(true);
+
+  setInterval(() => checkLampStatus(true), 5000);
+</script>
+
+</body>
 </html>
