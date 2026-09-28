@@ -2,14 +2,16 @@
 
 Secure Java-based backend server for a smart RGB lamp with a built-in web interface. This server manages lamp states, colors, and patterns, and communicates with microcontroller-based hardware (ESP32/Arduino).
 
+<p style="text-align: center;">
+  <img src="assets/demonstration.gif" width="600" alt="RGB Lamp Web UI Demo">
+</p>
+
 ## 🛠 Tech Stack
 * **Language:** Java 21
 * **Framework:** Spring Boot 3.x
 * **Security:** Spring Security (Form-based & API authentication)
 * **Database:** PostgreSQL 15
 * **DevOps:** Docker, Docker Compose
-
-![Работа RGB лампы](assets/demonstration.gif)
 
 
 ## 🚀 Quick Start (Docker)
