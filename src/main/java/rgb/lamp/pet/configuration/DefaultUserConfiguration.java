@@ -12,6 +12,7 @@ import rgb.lamp.pet.repository.UserRepository;
 @Configuration
 public class DefaultUserConfiguration {
 
+    //создаем дефолтного пользователя для работы
     @org.springframework.beans.factory.annotation.Value("${DEF_PASS}")
     private String defaultPassword;
 

@@ -15,4 +15,6 @@ public class LampEntity {
 
     private boolean isActive;
 
+    private boolean isWorking;
+
 }
