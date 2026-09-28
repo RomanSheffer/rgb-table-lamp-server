@@ -9,6 +9,9 @@ Secure Java-based backend server for a smart RGB lamp with a built-in web interf
 * **Database:** PostgreSQL 15
 * **DevOps:** Docker, Docker Compose
 
+![Работа RGB лампы](assets/demonstration.gif)
+
+
 ## 🚀 Quick Start (Docker)
 You don't need to install Java or Maven on your system. The entire infrastructure can be launched with a single command.
 
